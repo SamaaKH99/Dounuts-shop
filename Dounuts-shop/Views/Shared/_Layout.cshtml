@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="myNavbar">
         <div class="container-fluid">
             @* ************** Title ************** *@
-            <a class="navbar-brand" asp-area="" asp-controller="Donut" asp-action="List" title="Donuts Shop">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" title="Donuts Shop">
                 <img style="max-width:1.5em; margin-top: -7px;" src="/images/logo/donut-logo.png"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -27,17 +27,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="" asp-action="">Home</a>
+                        <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #ce2761" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Donuts
-                        </a>
-                        <div class="nav-item dropdown-menu" aria-labelledby="navbarDropdown">
-                             <a style="color: #ce2761" class="dropdown-item" asp-area="" asp-controller="" asp-action="">Category1</a>
-                             <a style="color: #ce2761" class="dropdown-item" asp-area="" asp-controller="" asp-action="">Category2</a>
-                        </div>
-                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="Donut" asp-action="List">Donuts</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link"
                         style="color: #ce2761"

@@ -1,6 +1,9 @@
+using Donuts_shop.Models;
 using Dounuts_shop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,9 +22,17 @@ namespace Dounuts_shop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // To add the DbContext to our app.
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             // Adding scope to the project to know the Interfaces and their classes.
-            services.AddScoped<IDonutRepository, MockDonutsRepository>();
-            services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+            services.AddScoped<IDonutRepository, DonutRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            // To create scoped shopping cart using the scoped getCart method. to check if it is in the session or it should be passed
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sc => ShoppingCart.GetCart(sc));
+            services.AddHttpContextAccessor();
+            services.AddSession();
 
             services.AddControllersWithViews();
         }
@@ -42,16 +53,16 @@ namespace Dounuts_shop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
+            // These 2 methods allowed using routing system in our application
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Donut}/{action=List}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

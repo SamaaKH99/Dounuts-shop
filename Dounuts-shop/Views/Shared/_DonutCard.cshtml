@@ -1,0 +1,37 @@
+﻿@model Donut      
+
+<style>
+    .card {
+      box-shadow: 1px 1px 5px 0px rgba(82, 82, 82, 0.75);
+      transition: all 150ms ease-in-out;
+    }
+    .card:hover {
+      bottom: -2px;
+      left: -2px;
+      box-shadow: 0px -2px 4px 1px rgba(80,192,231,0.84);
+    }
+    .card:active {
+      bottom: 2px;
+      left: 2px;
+      box-shadow: 0px -2px 4px 1px rgba(80,192,231,0.84);
+    }
+</style>
+
+<div class="col-lg-3 d-flex align-items-stretch">
+@*    <a class="card-block stretched-link text-decoration-none">*@
+        <div class="card card mb-3" style="width: 32rem;">
+            <a asp-controller="donut" asp-action="Details" asp-route-id="@Model.DonutId"><img class="card-img-top" src="@Model.ImageURL" alt="@Model.Name"></a>
+            <div class="card-body">
+                <h4 class="card-title" style="color: #243b45;">@Model.Name</h4>
+                <h5 style="color: #df5879;">@Model.Price.ToString("C")</h5>
+                <h6 class="text-muted">@Model.ShortDescription</h6>
+                <div class="card-footer card-footer p-5 pt-0 border-top-0 bg-transparent row">
+                    <div class="col-sm-16 text-center" style="padding: 10px;">
+                        <a class="btn text-white" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@Model.DonutId"
+                            style="background-color: #df5879 !important; border-radius: 1em !important;">
+                            <i class="bi-cart"></i> Add to Cart </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

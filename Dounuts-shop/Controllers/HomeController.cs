@@ -2,21 +2,26 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using Donuts_shop.Models;
 
 namespace Dounuts_shop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IDonutRepository _donutRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IDonutRepository donutRepository)
         {
-            _logger = logger;
+            _donutRepository = donutRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var homeViewModel = new HomeViewModel
+            {
+                DonutsOfTheWeek = _donutRepository.DonutsOfTheWeek
+            };
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()

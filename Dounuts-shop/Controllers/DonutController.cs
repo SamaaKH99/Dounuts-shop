@@ -29,5 +29,14 @@ namespace Dounuts_shop.Controllers
         }
 
         // Viewbags are dynamic. They takes data to the view 
+        public ViewResult Details(int id)
+        {
+            var donut = _donutRepository.GetDonutById(id);
+            if (donut == null)
+            {
+                return null;
+            }
+            return View(donut);
+        }
     }
 }

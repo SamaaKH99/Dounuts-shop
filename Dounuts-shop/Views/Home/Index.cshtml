@@ -1,8 +1,21 @@
-﻿@{
+﻿@using Donuts_shop.Models
+@{
     ViewData["Title"] = "Home Page";
 }
+@model HomeViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<partial name="_Carousel" />
+
+<br /><br />
+<h1> <b style="color: #50c0e7">Donuts</b> <b style="color: #243b45">of the Week</b></h1>
+<h6 class="text-muted"><i>Our Weekly Selection - Just for You !</i></h6>
+<br />
+
+<div class = "row">
+    @foreach(var donut in Model.DonutsOfTheWeek)
+    {
+        <partial name = "_DonutCard" model = "donut" />
+    }
 </div>
+
