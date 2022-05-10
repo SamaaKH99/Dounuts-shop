@@ -1,0 +1,13 @@
+﻿@using Donuts_shop.ViewModels
+@model ShoppingCartViewModel
+
+@if (Model.ShoppingCart.ShoppingCartItems.Count > 0)
+{
+	<li class="nav-item">
+		<a style="color: #ce2761" class="nav-link"><i class="bi bi-basket-fill"></i>
+			<span id="cart-status">
+				@Model.ShoppingCart.ShoppingCartItems.Count
+			</span>
+		</a>
+	</li>
+}

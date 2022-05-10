@@ -1,87 +1,84 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <!-- Bootstrap Font Icon CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
-<body>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="myNavbar">
-        <div class="container-fluid">
-            @* ************** Title ************** *@
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" title="Donuts Shop">
-                <img style="max-width:1.5em; margin-top: -7px;" src="/images/logo/donut-logo.png"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="Donut" asp-action="List">Donuts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                        style="color: #ce2761"
-                        asp-area="" asp-controller="" asp-action="">Contact</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="myNavbar">
+            <div class="container-fluid">
+                @* ************** Title ************** *@
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" title="Donuts Shop">
+                    <img style="max-width:1.5em; margin-top: -7px;" src="/images/logo/donut-logo.png"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a style="color: #ce2761" class="nav-link" asp-area="" asp-controller="" asp-action=""><i
-                                    class="bi bi-basket-fill"></i></a>
+                            <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="Home"
+                                asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="" asp-action="">Login</a>
+                            <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="Donut"
+                                asp-action="List">Donuts</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color: #ce2761" asp-area="" asp-controller="" asp-action="">Register</a>
-                        </li>
+                        @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
+                    <div class="d-flex">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            @await Component.InvokeAsync("ShoppingCartSummary")
+                            <partial name="_LoginPartial" />
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
-</header>
-    <div class="container">
+        </nav>
+    </header>
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Donuts Shop
+    <footer class="bg-light text-center text-lg-start bg-muted navbar-fixed-bottom">
+        <!-- Copyright -->
+        <div class="text-center p-3">
+            © 2020 Copyright:
+            <p class="text-dark" href="">Donuts Shop</p>
         </div>
+        <!-- Copyright -->
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
 
 
 @*
-    CSS Colors codes
-    hot pink ->     #ce2761
-    rose ->         #f3a3b2
-    white ->        #ffffff
-    black ->        #262626
-    Blue ->         #50c0e7
-    Pink ->         #df5879
-    Dark Blue ->    #243b45
+CSS Colors codes
+hot pink -> #ce2761
+rose -> #f3a3b2
+white -> #ffffff
+black -> #262626
+Blue -> #50c0e7
+Pink -> #df5879
+Dark Blue -> #243b45
 *@

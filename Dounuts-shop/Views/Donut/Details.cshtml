@@ -1,77 +1,52 @@
-﻿@model Dounuts_shop.Models.Donut
-
+﻿
+@model Donut
 @{
-    ViewData["Title"] = "Details";
+ViewData["Title"] = "Donuts Details";
 }
+    <div class="container mt-5 mb-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-10">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="images p-3">
+                                <div class="text-center p-4"> <img id="main-image" src="@Model.ImageURL" width="250" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="product p-4">
+                                <div class="mt-4 mb-3"> 
+                                    <h2 class="text-uppercase" style="color: #df5879;">@Model.Name</h2>
+                                    <p class="text-muted">your favorite donuts !</p>
+                                    <div class="price d-flex flex-row align-items-center">                 
+                                        <h5 style="color: #50c0e7;">@Model.Price.ToString("C")</h5>
+                                    </div>
+                                </div>
+                                <h6 class="about" style="color: #243b45;"><i>@Model.LongDescription</i></h6>
+                                <br />
+                                <a class="btn text-white"
+                                    style="background-color: #df5879 !important; border-radius: 1em !important;"
+                                    asp-controller="ShoppingCart" asp-action="AddToShoppingCart"
+                                    asp-route-id="@Model.DonutId">
+                                    <i class="bi-cart"></i> Add to Cart </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h1>Details</h1>
 
-<div>
-    <h4>Donut</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LongDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LongDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageURL)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageURL)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageThumbnailURL)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageThumbnailURL)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDonutOfTheWeek)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDonutOfTheWeek)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Instock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Instock)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.CategoryId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.DonutId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
 
-                        <a class="btn text-white"
-                            style="background-color: #df5879 !important; border-radius: 1em !important;"
-                            asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@Model.DonutId">
-                            <i class="bi-cart"></i> Add to Cart </a>
+@*
+CSS Colors codes
+hot pink -> #ce2761
+rose -> #f3a3b2
+white -> #ffffff
+black -> #262626
+Blue -> #50c0e7
+Pink -> #df5879
+Dark Blue -> #243b45
+*@

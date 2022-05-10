@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Category>
+
+        <nav class="small" id="toc">
+            <ul class="list-unstyled">
+                <li class="my-2">
+                    <button class="btn d-inline-flex align-items-center" data-bs-toggle="collapse" aria-expanded="true"
+                        data-bs-target="#contents-collapse" aria-controls="contents-collapse">Categories</button>
+                    <ul class="list-unstyled ps-3 collapse show" id="contents-collapse" style="">
+                        @foreach(var category in Model)
+                        {
+                            <li>
+                                <a  style="color: #ce2761; text-decoration: none;" class="d-inline-flex align-items-center rounded" asp-controller="Donut" asp-route-category="@category.CategoryName">
+                                    @category.CategoryName</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </nav>
